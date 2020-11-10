@@ -20,7 +20,6 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         # XXX fix
         self.X_ = X
         self.y_ = y
-
         return self
 
     def predict(self, X):
@@ -29,9 +28,8 @@ class OneNearestNeighbor(BaseEstimator, ClassifierMixin):
         X = check_array(X)
         y_pred = np.full(shape=len(X), fill_value=self.classes_[0],
                          dtype = self.classes_.dtype)
-        # XXX fix
         for i in range(y_pred.shape[0]):
-            euclidean_distances = np.linalg.norm(self.X_ - X[i,:], axis = 1)
+            euclidean_distances = np.linalg.norm(self.X_ - X[i,:], axis=1)
             index_closest = np.argmin(euclidean_distances)
             y_pred[i] = self.y_[index_closest]
             
